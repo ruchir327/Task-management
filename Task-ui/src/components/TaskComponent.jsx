@@ -112,11 +112,11 @@ const TaskComponenent = () => {
 
   return (
     <div className='container'>
-      <br /> <br />
-      <div className='row'>
-        <div className='card col-md-6 offset-md-3 offset-md-3'>
+     
+      <div className='row mt-5'>
+        <div className='card col-md-6 offset-md-3'>
           {pageTitle()}
-          <div className='card-body'>
+          <div  className='card-body'>
             <form>
               <div className='form-group mb-2'>
                 <label className='form-label'>Task Title:</label>

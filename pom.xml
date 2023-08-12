@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>Todo-management</artifactId>
+	<artifactId>Task-management</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Todo-management</name>
 	<description>Full stack todo project using react</description>
@@ -43,7 +43,11 @@
 			<version>3.20.2</version>
 			<scope>test</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+			<version>3.1.1</version>
+		</dependency>
 		<!-- JUnit 5 Engine (JUnit Vintage) - For running JUnit 4 tests in JUnit 5 -->
 		<dependency>
 			<groupId>org.junit.vintage</groupId>

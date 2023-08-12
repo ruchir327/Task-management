@@ -90,7 +90,7 @@ public TaskDto addTask(TaskDto taskDto, String assignedBy) {
         Task task = taskRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Task not found with id : " + id));
 
-        taskRepository.deleteById(id);
+        taskRepository.delete(task);
     }
 
     @Override

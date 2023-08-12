@@ -1,9 +1,8 @@
 package com.example.Task.management.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 @Getter
 @Setter
@@ -11,18 +10,19 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TaskDto {
     private Long id;
+    @NotEmpty
+    @Size(min = 2, message = "Task title should have at least 2 characters")
     private String title;
+    @NotEmpty
+    @Size(min = 10, message = "Task description should have at least 10 characters")
     private String description;
+    @NonNull
     private boolean completed;
+    @NonNull
     private String assignedUser;
+    @NonNull
+    private String assignedBy;
 
-
-
-    private String assignedBy; // New field to store the name of the person who assigned the task
-
-    public String getAssignedUser() {
-        return this.assignedUser;
-    }
 
 
 

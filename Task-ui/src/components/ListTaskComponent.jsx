@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { isAdminUser,getLoggedInUsername } from '../services/AuthService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Button } from 'antd';
 const ListTaskComponent = () => {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
@@ -110,11 +110,13 @@ const ListTaskComponent = () => {
     <div className='container'>
       <h2 className='text-center'>List of Tasks</h2>
       {isAdmin && (
-        <div className='text-center' style={{ marginBottom: '20px' }}>
-          <button className='btn btn-primary' onClick={addNewTask}>
-            Add Task
-          </button>
-        </div>
+      <div className='text-center' style={{ marginBottom: '20px' }}>
+      <Button className="btn btn-primary square" size="large"  onClick={addNewTask}>
+        Add Task
+      </Button>
+    </div>
+    
+     
       )}
 
       <div>
@@ -126,7 +128,6 @@ const ListTaskComponent = () => {
               <th>Task Completed</th>
               <th>Assigned By</th>
               <th>Assigned User</th>
-          
               <th>Actions</th>
             </tr>
           </thead>

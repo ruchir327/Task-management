@@ -26,14 +26,6 @@ public class Task {
     private boolean completed;
     private String assignedUser;
     private String assignedBy;
-    public String getAssignedUser() {
-        return assignedUser;
-    }
-    public void setAssignedUser(String assignedUser) {
-        this.assignedUser = assignedUser;
-    }
 
-    public void setAssignedBy(String assignedBy) {
-        this.assignedBy=assignedBy;
-    }
+
 }
