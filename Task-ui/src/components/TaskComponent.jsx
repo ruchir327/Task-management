@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAllUsers } from '../services/TaskService';
 import { TaskDto } from './TaskDto'; // Import the TodoDto class
-
+import { Card,Button } from 'antd';
 const TaskComponenent = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -114,7 +114,8 @@ const TaskComponenent = () => {
     <div className='container'>
      
       <div className='row mt-5'>
-        <div className='card col-md-6 offset-md-3'>
+      <Card className='bg-light'>
+      <div className='card-header'>
           {pageTitle()}
           <div  className='card-body'>
             <form>
@@ -170,14 +171,15 @@ const TaskComponenent = () => {
                 </select>
               </div>
 
-              <div className='text-center pt-3'>
-                <button className='btn btn-success' onClick={saveOrUpdateTask} disabled={!formCompleted}>
+              <div className='shape text-center pt-3'>
+                <Button size='large' className='btn btn-success' onClick={saveOrUpdateTask} disabled={!formCompleted}>
                   Submit
-                </button>
+                </Button>
               </div>
             </form>
           </div>
         </div>
+        </Card>
       </div>
     </div>
   );

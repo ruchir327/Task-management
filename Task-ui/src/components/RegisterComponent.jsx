@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { registerAPICall } from '../services/AuthService';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from 'antd';
+import { Button,Card } from 'antd';
 import { toast } from 'react-toastify';
 const RegisterComponent = () => {
   const [name, setName] = useState('');
@@ -79,8 +79,7 @@ const RegisterComponent = () => {
     <div className='container'>
       <br />
       <div className='row justify-content-center'>
-        {/* Apply CSS class for styling the registration card */}
-        <div className='register-card'>
+        <Card className='bg-light'>
           <div className='card-header'>
           <h2 className='text-center'>
               Create an Account
@@ -147,7 +146,7 @@ const RegisterComponent = () => {
                 </select>
             </div>
               <div className='form-group mb-3 text-center'>
-                <Button type='primary' onClick={(e) => handleRegistrationForm(e)}>
+                <Button type='primary' size='large' onClick={(e) => handleRegistrationForm(e)}>
                   Create Account
                 </Button>
               </div>
@@ -165,7 +164,7 @@ const RegisterComponent = () => {
                 </div>
             </form>
           </div>
-        </div>
+        </Card>
       </div>
     </div>
   );
