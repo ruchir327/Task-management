@@ -48,7 +48,7 @@ const TaskComponenent = () => {
   function saveOrUpdateTask(e) {
     e.preventDefault();
     if (title.length === 0 || title.length < 5) {
-      toast.error('Todo title cannot be empty or have a length less than 5 characters!', {
+      toast.error('Task title cannot be empty or have a length less than 5 characters!', {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       });

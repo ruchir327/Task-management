@@ -143,32 +143,35 @@ const ListTaskComponent = () => {
                 <td>
                   {isAdmin && (
                     <>
-                      <button className='btn btn-info' onClick={() => updateTask(task.id)}>
+                      <Button size='large' className='btn btn-info' onClick={() => updateTask(task.id)}>
                         Update
-                      </button>
-                      <button
+                      </Button>
+                      <Button
+                      size='large'
                         className='btn btn-danger'
                         onClick={() => removeTask(task.id,task.title)}
                         style={{ marginLeft: '10px' }}
                       >
                         Delete
-                      </button>
+                      </Button>
                     </>
                   )}
-                  <button
+                   <Button
+                      size='large'
                     className='btn btn-success'
                     onClick={() => markCompleteTask(task.id,task.title)}
                     style={{ marginLeft: '10px' }}
                   >
                     Complete
-                  </button>
-                  <button
+                  </Button>
+                  <Button
+                      size='large'
                     className='btn btn-info'
                     onClick={() => markInCompleteTask(task.id,task.title)}
                     style={{ marginLeft: '10px' }}
                   >
                     In Complete
-                  </button>
+                  </Button>
                 </td>
               </tr>
             ))}
