@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { saveTask, updateTask, getTaskById } from '../services/TaskService';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getAllUsers } from '../services/TaskService';
 import { TaskDto } from './TaskDto'; // Import the TodoDto class
-import { Card,Button } from 'antd';
+
 const TaskComponenent = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -48,7 +49,7 @@ const TaskComponenent = () => {
   function saveOrUpdateTask(e) {
     e.preventDefault();
     if (title.length === 0 || title.length < 5) {
-      toast.error('Task title cannot be empty or have a length less than 5 characters!', {
+      toast.error('Todo title cannot be empty or have a length less than 5 characters!', {
         position: toast.POSITION.TOP_CENTER,
         autoClose: 2000,
       });
@@ -112,12 +113,11 @@ const TaskComponenent = () => {
 
   return (
     <div className='container'>
-     
-      <div className='row mt-5'>
-      <Card className='bg-light'>
-      <div className='card-header'>
+      <br /> <br />
+      <div className='row'>
+        <div className='card col-md-6 offset-md-3 offset-md-3'>
           {pageTitle()}
-          <div  className='card-body'>
+          <div className='card-body'>
             <form>
               <div className='form-group mb-2'>
                 <label className='form-label'>Task Title:</label>
@@ -171,15 +171,14 @@ const TaskComponenent = () => {
                 </select>
               </div>
 
-              <div className='shape text-center pt-3'>
-                <Button size='large' className='btn btn-success' onClick={saveOrUpdateTask} disabled={!formCompleted}>
+              <div className='text-center pt-3'>
+                <button className='btn btn-success' onClick={saveOrUpdateTask} disabled={!formCompleted}>
                   Submit
-                </Button>
+                </button>
               </div>
             </form>
           </div>
         </div>
-        </Card>
       </div>
     </div>
   );

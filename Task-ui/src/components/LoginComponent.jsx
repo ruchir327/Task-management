@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { loginAPICall, saveLoggedInUser, storeToken } from '../services/AuthService';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button, Row, Col,Card } from 'antd';
+import { Button, Row, Col } from 'antd';
 import { toast } from 'react-toastify';
 
 const LoginComponent = () => {
@@ -59,7 +59,7 @@ const LoginComponent = () => {
       <br />
       <div className='row justify-content-center'>
         {/* Apply CSS class for styling the login card */}
-        <Card className='bg-light'>
+        <div className='login-card'>
           <div className='card-header'>
             <h2 className='text-center'> Sign-In </h2>
           </div>
@@ -104,7 +104,7 @@ const LoginComponent = () => {
               Create a new account
             </Link>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );

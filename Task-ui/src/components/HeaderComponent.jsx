@@ -25,7 +25,7 @@ const HeaderComponent = () => {
         <header>
             <nav className='navbar navbar-expand-md navbar-dark bg-dark'>
                 <div>
-                    <a href='http://localhost:3000' className='navbar-brand '>
+                    <a href='http://localhost:3000' className='navbar-brand text-center'>
                         Task Management Application
                     </a>
                 </div>
@@ -60,7 +60,7 @@ const HeaderComponent = () => {
                     {
                         isAuth &&    
                         <li className='nav-item'>
-                        <NavLink to="/login" className="nav-link " onClick={handleLogout}>Logout</NavLink>
+                        <NavLink to="/login" className="nav-link" onClick={handleLogout}>Logout</NavLink>
                     </li>
                     }
 

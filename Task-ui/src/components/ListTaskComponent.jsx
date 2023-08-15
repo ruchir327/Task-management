@@ -1,29 +1,21 @@
+
 import React, { useEffect, useState } from 'react';
 import { completeTask, deleteTask, getAllTasks, inCompleteTask } from '../services/TaskService';
 import { useNavigate } from 'react-router-dom';
-import { isAdminUser,getLoggedInUsername } from '../services/AuthService';
+import { isAdminUser,getLoggedInUsername,getUserRoles } from '../services/AuthService';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Button } from 'antd';
+
 const ListTaskComponent = () => {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
   const isAdmin = isAdminUser();
   const loggedInUsername = getLoggedInUsername(); // Retrieve the currently logged-in username
-
+  const isUserRole = getUserRoles();
   useEffect(() => {
     listTasks();
   }, []);
-  // function listTasks() {
-  //   getAllTasks()
-  //     .then((response) => {
-  //       setTasks(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }
-
+  
   function listTasks() {
     getAllTasks()
       .then((response) => {
@@ -46,60 +38,47 @@ const ListTaskComponent = () => {
     navigate(`/update-task/${id}`);
   }
 
-  function removeTask(id, taskTitle) {
-    // Show a confirmation dialog to the user before proceeding with the deletion
-    const confirmed = window.confirm(`Are you sure you want to delete the task: ${taskTitle}?`);
-    if (!confirmed) {
-      return; // If the user clicks Cancel, do nothing
-    }
-  
+  function removeTask(id) {
     deleteTask(id)
       .then(() => {
         listTasks();
-        toast.success(`Task "${taskTitle}" has been deleted successfully!`, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
-        });
       })
       .catch((error) => {
         console.error(error);
-        toast.error(`Failed to delete the task "${taskTitle}"!`, {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000,
-        });
       });
   }
-  function markCompleteTask(id,title) {
+
+  function markCompleteTask(id) {
     console.log(tasks)
     completeTask(id)
       .then(() => {
         listTasks();
-        toast.success(`Task ${title} marked as complete`, {
+        toast.success('Task marked as complete!', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
       })
       .catch((error) => {
         console.error(error);
-        toast.error(`Failed to mark task ${title} as complete!`, {
+        toast.error('Failed to mark task as complete!', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
       });
   }
 
-  function markInCompleteTask(id,title) {
+  function markInCompleteTask(id) {
     inCompleteTask(id)
       .then(() => {
         listTasks();
-        toast.info(`Task ${title} marked as incomplete!`, {
+        toast.info('Task marked as incomplete!', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
       })
       .catch((error) => {
         console.error(error);
-        toast.error(`Failed to mark task ${title} as incomplete!`, {
+        toast.error('Failed to mark task as incomplete!', {
           position: toast.POSITION.TOP_CENTER,
           autoClose: 2000,
         });
@@ -108,15 +87,17 @@ const ListTaskComponent = () => {
 
   return (
     <div className='container'>
-      <h2 className='text-center'>List of Tasks</h2>
+     <h2 className='text-center'>
+        {isUserRole
+          ? `List of Tasks for ${loggedInUsername}`
+          : 'List of Tasks'}
+      </h2>
       {isAdmin && (
-      <div className='text-center' style={{ marginBottom: '20px' }}>
-      <Button className="btn btn-primary square" size="large"  onClick={addNewTask}>
-        Add Task
-      </Button>
-    </div>
-    
-     
+        <div className='text-center' style={{ marginBottom: '20px' }}>
+          <button className='btn btn-primary' onClick={addNewTask}>
+            Add Task
+          </button>
+        </div>
       )}
 
       <div>
@@ -128,6 +109,7 @@ const ListTaskComponent = () => {
               <th>Task Completed</th>
               <th>Assigned By</th>
               <th>Assigned User</th>
+          
               <th>Actions</th>
             </tr>
           </thead>
@@ -143,35 +125,32 @@ const ListTaskComponent = () => {
                 <td>
                   {isAdmin && (
                     <>
-                      <Button size='large' className='btn btn-info' onClick={() => updateTask(task.id)}>
+                      <button className='btn btn-info' onClick={() => updateTask(task.id)}>
                         Update
-                      </Button>
-                      <Button
-                      size='large'
+                      </button>
+                      <button
                         className='btn btn-danger'
-                        onClick={() => removeTask(task.id,task.title)}
+                        onClick={() => removeTask(task.id)}
                         style={{ marginLeft: '10px' }}
                       >
                         Delete
-                      </Button>
+                      </button>
                     </>
                   )}
-                   <Button
-                      size='large'
+                  <button
                     className='btn btn-success'
-                    onClick={() => markCompleteTask(task.id,task.title)}
+                    onClick={() => markCompleteTask(task.id)}
                     style={{ marginLeft: '10px' }}
                   >
                     Complete
-                  </Button>
-                  <Button
-                      size='large'
+                  </button>
+                  <button
                     className='btn btn-info'
-                    onClick={() => markInCompleteTask(task.id,task.title)}
+                    onClick={() => markInCompleteTask(task.id)}
                     style={{ marginLeft: '10px' }}
                   >
                     In Complete
-                  </Button>
+                  </button>
                 </td>
               </tr>
             ))}
